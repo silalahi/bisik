@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+*.egg-info/
+
+# Flask
+instance/
+.webassets-cache
+
+# Audio files
+uploads/
+*.wav
+*.ogg
+*.mp3
+
+# Environment
+.env
+.vscode/
+.idea/
+
+# Models
+models/
+*.pt
+*.pth

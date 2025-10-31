@@ -1,0 +1,16 @@
+id,text,difficulty,category
+1,The quick brown fox jumps over the lazy dog.,easy,sentence
+2,She sells seashells by the seashore.,medium,tongue_twister
+3,Peter Piper picked a peck of pickled peppers.,hard,tongue_twister
+4,How much wood would a woodchuck chuck if a woodchuck could chuck wood.,hard,tongue_twister
+5,Hello how are you today.,easy,greeting
+6,I would like to improve my pronunciation.,medium,statement
+7,The weather is beautiful today.,easy,statement
+8,Artificial intelligence is transforming technology.,hard,technical
+9,Red lorry yellow lorry.,medium,tongue_twister
+10,Unique New York.,easy,tongue_twister
+11,Irish wristwatch.,hard,tongue_twister
+12,The sixth sick sheik's sixth sheep's sick.,hard,tongue_twister
+13,Can you understand me when I speak.,easy,question
+14,Practice makes perfect.,easy,proverb
+15,A journey of a thousand miles begins with a single step.,medium,proverb
