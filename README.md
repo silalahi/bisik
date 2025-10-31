@@ -1,9 +1,8 @@
-# AI Pronunciation Trainer
+# Bhysiq
 An AI-powered tool to evaluate and improve your pronunciation.
 
 ## Features
 - Real-time pronunciation evaluation
-- Support for English and German
 - Word-level accuracy scoring
 - Phonetic transcription feedback
 
@@ -12,7 +11,7 @@ An AI-powered tool to evaluate and improve your pronunciation.
 pip install -r requirements.txt
 python app.py
 ```
-Visit http://localhost:5000
+Visit http://localhost:3000
 
 ## Documentation
 - [Architecture](docs/architecture.md)
