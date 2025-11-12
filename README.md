@@ -22,7 +22,6 @@ An AI-powered tool to evaluate and improve your pronunciation.
 ## Supported Languages
 
 - English (en)
-- German (de)
 
 The system is extensible and can support additional languages by adding new phoneme converters.
 
@@ -84,11 +83,10 @@ The application will be available at `http://localhost:3000`
 ### Web Interface
 
 1. Open your browser to `http://localhost:3000`
-2. Select your target language (English or German)
-3. Click "Start Recording" and speak the provided text
-4. Click "Stop Recording" when finished
-5. Click "Evaluate Pronunciation" to get your results
-6. Review detailed feedback including:
+2. Click "Start Recording" and speak the provided text
+3. Click "Stop Recording" when finished
+4. Click "Evaluate Pronunciation" to get your results
+5. Review detailed feedback including:
    - Overall pronunciation accuracy score
    - Word-by-word comparison
    - Expected vs actual phonetic transcription (IPA)
