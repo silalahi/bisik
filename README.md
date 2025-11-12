@@ -1,17 +1,10 @@
-# Bhysiq
+# Bisik
 An AI-powered tool to evaluate and improve your pronunciation.
 
 ## Features
 - Real-time pronunciation evaluation
 - Word-level accuracy scoring
 - Phonetic transcription feedback
-
-## Quick Start
-```bash
-pip install -r requirements.txt
-python app.py
-```
-Visit http://localhost:3000
 
 ## Documentation
 - [Architecture](docs/architecture.md)
@@ -25,7 +18,6 @@ Visit http://localhost:3000
 python -m venv venv
 source venv/bin/activate  # Windows: venv\Scripts\activate
 ```
-
 2. Install dependencies
 ```
 pip install -r requirements.txt
