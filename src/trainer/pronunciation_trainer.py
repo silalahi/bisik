@@ -22,7 +22,6 @@ class PronunciationTrainer:
         self.logger = logging.getLogger(__name__)
     
     def evaluate(self, audio_file: Path, expected_text: str) -> PronunciationResult:
-        """Evaluate pronunciation from audio file"""
         try:
             # Process audio
             audio_tensor = self.audio_processor.process_audio_file(audio_file)
@@ -59,7 +58,6 @@ class PronunciationTrainer:
             raise
     
     def _calculate_overall_accuracy(self, comparisons: List[WordComparison]) -> float:
-        """Calculate overall pronunciation accuracy"""
         if not comparisons:
             return 0.0
         

@@ -1,3 +1,5 @@
+// AI Pronunciation Trainer - Frontend JavaScript (Tailwind Version)
+
 // State management
 let mediaRecorder;
 let audioChunks = [];
@@ -266,18 +268,71 @@ function createWordItem(comparison, index) {
         wordText = `<strong>"${comparison.actual_word}"</strong> (extra word)`;
     }
     
-    // Build IPA text
-    let ipaText = '';
-    if (comparison.expected_ipa && comparison.actual_ipa) {
-        ipaText = `<div class="text-sm text-gray-600 font-mono bg-white/50 px-2 py-1 rounded inline-block mt-2">IPA: ${comparison.expected_ipa} → ${comparison.actual_ipa}</div>`;
-    } else if (comparison.expected_ipa) {
-        ipaText = `<div class="text-sm text-gray-600 font-mono bg-white/50 px-2 py-1 rounded inline-block mt-2">IPA: ${comparison.expected_ipa}</div>`;
+    // Build IPA text with better formatting
+    let ipaSection = '';
+    if (comparison.expected_ipa || comparison.actual_ipa) {
+        const expectedIPA = comparison.expected_ipa || '—';
+        const actualIPA = comparison.actual_ipa || '—';
+        
+        // Check if phonemes match for highlighting
+        const ipasMatch = expectedIPA === actualIPA && expectedIPA !== '—';
+        
+        // Create character-by-character comparison for phoneme errors
+        let phonemeComparison = '';
+        if (comparison.phoneme_errors && comparison.phoneme_errors.length > 0 && !ipasMatch) {
+            const expectedChars = comparison.phoneme_errors.map(err => 
+                err.expected ? `<span class="${err.is_correct ? 'text-green-600 bg-green-100' : 'text-red-600 bg-red-100'} px-1 rounded font-semibold">${err.expected}</span>` : ''
+            ).join('');
+            
+            const actualChars = comparison.phoneme_errors.map(err => 
+                err.actual ? `<span class="${err.is_correct ? 'text-green-600 bg-green-100' : 'text-red-600 bg-red-100'} px-1 rounded font-semibold">${err.actual}</span>` : ''
+            ).join('');
+            
+            phonemeComparison = `
+                <div class="mt-2 p-3 bg-white/50 rounded-lg border border-gray-200">
+                    <div class="text-xs font-semibold text-gray-500 mb-2">Phoneme Comparison:</div>
+                    <div class="flex items-start gap-3 text-sm">
+                        <div class="flex-1">
+                            <div class="text-xs text-gray-500 mb-1">Expected:</div>
+                            <div class="font-mono leading-relaxed">${expectedChars || expectedIPA}</div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="text-xs text-gray-500 mb-1">Your pronunciation:</div>
+                            <div class="font-mono leading-relaxed">${actualChars || actualIPA}</div>
+                        </div>
+                    </div>
+                    <div class="mt-2 text-xs text-gray-500">
+                        <span class="inline-flex items-center gap-1"><span class="w-3 h-3 bg-green-100 rounded"></span> Correct</span>
+                        <span class="inline-flex items-center gap-1 ml-3"><span class="w-3 h-3 bg-red-100 rounded"></span> Incorrect</span>
+                    </div>
+                </div>
+            `;
+        }
+        
+        const ipaMatchClass = ipasMatch ? 'text-green-700' : 'text-gray-700';
+        
+        ipaSection = `
+            <div class="mt-3 space-y-2">
+                <div class="flex items-start gap-2 text-sm">
+                    <span class="font-semibold text-gray-600 min-w-[90px]">Expected IPA:</span>
+                    <span class="font-mono bg-white/70 px-2 py-1 rounded ${ipaMatchClass} text-base">${expectedIPA}</span>
+                </div>
+                ${actualIPA !== '—' ? `
+                <div class="flex items-start gap-2 text-sm">
+                    <span class="font-semibold text-gray-600 min-w-[90px]">Your IPA:</span>
+                    <span class="font-mono bg-white/70 px-2 py-1 rounded ${ipaMatchClass} text-base">${actualIPA}</span>
+                    ${!ipasMatch && expectedIPA !== '—' ? '<span class="text-red-500 ml-2 font-semibold">⚠️ Different</span>' : '<span class="text-green-500 ml-2 font-semibold">✓ Perfect!</span>'}
+                </div>
+                ` : ''}
+                ${phonemeComparison}
+            </div>
+        `;
     }
     
     wordDiv.innerHTML = `
         <div class="flex-1">
-            <div class="text-lg font-semibold text-gray-800 mb-2">${wordText}</div>
-            ${ipaText}
+            <div class="text-lg font-semibold text-gray-800 mb-1">${wordText}</div>
+            ${ipaSection}
         </div>
         <div class="text-3xl font-bold text-gray-800 min-w-[80px] text-right">${comparison.similarity_score}%</div>
     `;
